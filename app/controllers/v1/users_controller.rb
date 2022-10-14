@@ -1,5 +1,5 @@
 module V1
-  class UsersController < ApplicationController
+  class UsersController < BaseController
     include SimpleQueryParameters
     include HumanizeActiveRecordErrors
 
