@@ -59,3 +59,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Execute processes in background
 gem 'sidekiq'
+
+# Friendly wrapper on Net Http
+gem 'httparty'
