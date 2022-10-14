@@ -9,4 +9,14 @@ class User < ApplicationRecord
   validates :key, uniqueness: true, length: { maximum: 100 }, presence: { message: "is missing" }
   validates :account_key, uniqueness: true, length: { maximum: 100 }, allow_blank: true
   validates :metadata, length: { maximum: 2000 }
+
+  scope :single_search, ->(query) do
+    query_statement = <<-SQL.freeze
+        users.email ILIKE :q
+      OR users.full_name ILIKE :q
+      OR users.metadata ILIKE :q
+    SQL
+
+    where(query_statement, q: "%#{query}%")
+  end
 end
