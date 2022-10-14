@@ -9,7 +9,7 @@ RSpec.describe AccountKeyGenerator, type: :unit do
 
       account_key = described_class.perform('test@email.com', 'my_key')
 
-      expect(account_key).to eq("account_key")
+      expect(account_key).to eq('account_key')
     end
   end
 

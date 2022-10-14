@@ -25,10 +25,10 @@ RSpec.describe User, type: :model do
 
   context '.single_search' do
     it 'returns users containing the searched term on the email, full_name or metadata' do
-      create(:user, full_name: "Carl Smith", email: "this_is_my_search_target@email.com", metadata: nil)
-      create(:user, full_name: "Jhon this_is_my_search_target", email: "jhon@email.com", metadata: nil)
-      create(:user, full_name: "Brittany Noah", email: "brittany@email.com", metadata: "some data, this_is_my_search_target, another information")
-      user_not_expected = create(:user, full_name: "Not targed user")
+      create(:user, full_name: 'Carl Smith', email: 'this_is_my_search_target@email.com', metadata: nil)
+      create(:user, full_name: 'Jhon this_is_my_search_target', email: 'jhon@email.com', metadata: nil)
+      create(:user, full_name: 'Brittany Noah', email: 'brittany@email.com', metadata: 'some data, this_is_my_search_target, another information')
+      user_not_expected = create(:user, full_name: 'Not targed user')
 
       users = User.single_search('this_is_my_search_target')
 

@@ -3,7 +3,7 @@ require 'rails_helper'
 
 require 'sidekiq/testing'
 
-RSpec.describe "Users", type: :request do
+RSpec.describe 'Users', type: :request do
   def asert_user_object_format(user_item)
     expected_columns = %i(email phone_number full_name key account_key metadata).freeze
     expect(expected_columns - user_item.keys).to be_empty
@@ -16,7 +16,7 @@ RSpec.describe "Users", type: :request do
     expect(actual_order.size.times.all? { |i| actual_order[i] == expected_order[i] }).to be_truthy
   end
 
-  describe "#index" do
+  describe '#index' do
     let(:result) { JSON.parse(response.body, symbolize_names: true) }
 
     context 'when fetching users without query paramenters' do
@@ -36,12 +36,12 @@ RSpec.describe "Users", type: :request do
 
     context 'when fetching users with query paramenters' do
       it 'returns only users matching the query parameters' do
-        create(:user, full_name: "Carl Smith", email: "this_is_my_search_target@email.com", metadata: nil)
-        create(:user, full_name: "Jhon this_is_my_search_target", email: "jhon@email.com", metadata: nil)
-        create(:user, full_name: "Brittany Noah", email: "brittany@email.com", metadata: "some data, this_is_my_search_target, another information")
-        create(:user, full_name: "Not targed user")
+        create(:user, full_name: 'Carl Smith', email: 'this_is_my_search_target@email.com', metadata: nil)
+        create(:user, full_name: 'Jhon this_is_my_search_target', email: 'jhon@email.com', metadata: nil)
+        create(:user, full_name: 'Brittany Noah', email: 'brittany@email.com', metadata: 'some data, this_is_my_search_target, another information')
+        create(:user, full_name: 'Not targed user')
 
-        get v1_users_path(query: "this_is_my_search_target")
+        get v1_users_path(query: 'this_is_my_search_target')
 
         expect(result).to have_key(:users)
         expect(result[:users]).to be_present
@@ -63,16 +63,16 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "#create" do
+  describe '#create' do
     let(:result) { JSON.parse(response.body, symbolize_names: true) }
 
     let(:valid_attributes) do
       {
-        email: "user5@example.com",
-        phone_number: "55512355555",
-        full_name: "Joe Smith",
-        password: "123123",
-        metadata: "male, age 32, unemployed, college-educated"
+        email: 'user5@example.com',
+        phone_number: '55512355555',
+        full_name: 'Joe Smith',
+        password: '123123',
+        metadata: 'male, age 32, unemployed, college-educated'
       }
     end
 

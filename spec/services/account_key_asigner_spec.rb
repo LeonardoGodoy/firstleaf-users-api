@@ -8,6 +8,6 @@ RSpec.describe AccountKeyAsigner, type: :unit do
 
     described_class.perform(user)
 
-    expect(user.account_key).to eq("account_key")
+    expect(user.account_key).to eq('account_key')
   end
 end

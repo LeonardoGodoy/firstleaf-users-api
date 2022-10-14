@@ -6,7 +6,7 @@ module V1
     before_action :validate_simple_query_format, only: :index
 
     def index
-      query = params[:query] || []
+      query = params[:query]
 
       @users = User.all.order(created_at: :desc)
       @users = @users.single_search(query) if query.present?
