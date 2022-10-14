@@ -26,7 +26,6 @@ user_attributes = data.each.with_index.map do |user, i|
     "phone_number": "555123555#{i}",
     "password": "12341234#{i}",
     "full_name": "#{user[:name]} Smith",
-    "password": SecureRandom.hex,
     "key": SecureRandom.hex,
     "account_key": SecureRandom.hex,
     "metadata": "#{user[:gender]}, age #{user[:age]}",

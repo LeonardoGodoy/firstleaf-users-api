@@ -12,7 +12,7 @@ gem 'puma', '~> 3.11'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -38,8 +38,14 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'rspec-rails', '~> 5.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
 
-  gem 'pry', '~> 0.13.1'
+group :test do
+  gem 'shoulda-matchers', '~> 4.0'
+  gem 'simplecov', require: false
 end
 
 # Securely manages password data
@@ -50,3 +56,6 @@ gem 'mimemagic', '~> 0.3.7'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Execute processes in background
+gem 'sidekiq'
