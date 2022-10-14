@@ -11,9 +11,9 @@ module AccountKeyGenerator
 
     response = HTTParty.post(ACCOUNT_KEY_URL, body: form_data.to_json, headers: { 'Content-Type': 'application/json' })
 
-    successful_request =  response.success? && response["account_key"].present?
+    successful_request = response.success? && response["account_key"].present?
 
-    raise AccountKeyServiceError, parsed_response["error"] unless successful_request
+    raise AccountKeyServiceError, response.parsed_response["error"] unless successful_request
 
     response.parsed_response["account_key"]
   end

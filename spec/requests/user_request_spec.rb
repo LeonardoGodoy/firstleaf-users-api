@@ -2,7 +2,6 @@
 require 'rails_helper'
 
 require 'sidekiq/testing'
-Sidekiq::Testing.inline!
 
 RSpec.describe "Users", type: :request do
   def asert_user_object_format(user_item)
@@ -92,10 +91,12 @@ RSpec.describe "Users", type: :request do
       end
 
       it 'generates account key asynchronously' do
-        allow(AccountKeyAsigner).to receive(:perform)
-        post v1_users_path, params: valid_attributes
+        Sidekiq::Testing.inline! do
+          allow(AccountKeyAsigner).to receive(:perform)
+          post v1_users_path, params: valid_attributes
 
-        expect(AccountKeyAsigner).to have_received(:perform)
+          expect(AccountKeyAsigner).to have_received(:perform)
+        end
       end
 
       it 'stores the salt password' do
