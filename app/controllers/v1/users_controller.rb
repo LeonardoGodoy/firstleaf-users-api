@@ -8,10 +8,8 @@ module V1
     def index
       query = params[:query] || []
 
-      users = User.all
-      users = users.single_search(query) if query.present?
-
-      render json: { users: users.order(created_at: :desc) }, status: :ok
+      @users = User.all.order(created_at: :desc)
+      @users = @users.single_search(query) if query.present?
     end
 
     def create
@@ -21,8 +19,7 @@ module V1
       if user.valid? && user.save
         ::AssignAccountKeyJob.perform_async(user.id)
 
-        attributes_to_display = %w(email phone_number full_name key account_key metadata).freeze
-        render json: user.attributes.slice(*attributes_to_display), status: :created
+        render user, status: :created
       else
         render json: { errors: humanized_errors(user) }, status: :unprocessable_entity
       end

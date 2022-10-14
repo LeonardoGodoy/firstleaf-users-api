@@ -63,3 +63,6 @@ gem 'sidekiq'
 
 # Friendly wrapper on Net Http
 gem 'httparty'
+
+# Json serializer
+gem 'jbuilder'
