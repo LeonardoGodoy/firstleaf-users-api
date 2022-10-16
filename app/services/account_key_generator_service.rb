@@ -1,4 +1,4 @@
-module AccountKeyGenerator
+module AccountKeyGeneratorService
   ACCOUNT_KEY_URL = 'https://account-key-service.herokuapp.com/v1/account'.freeze
 
   class AccountKeyServiceError < StandardError; end

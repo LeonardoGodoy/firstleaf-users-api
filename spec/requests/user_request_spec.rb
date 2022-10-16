@@ -92,10 +92,10 @@ RSpec.describe 'Users', type: :request do
 
       it 'generates account key asynchronously' do
         Sidekiq::Testing.inline! do
-          allow(AccountKeyAsigner).to receive(:perform)
+          allow(AccountKeyAsignerService).to receive(:perform)
           post v1_users_path, params: valid_attributes
 
-          expect(AccountKeyAsigner).to have_received(:perform)
+          expect(AccountKeyAsignerService).to have_received(:perform)
         end
       end
 

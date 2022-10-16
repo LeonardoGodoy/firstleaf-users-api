@@ -12,6 +12,6 @@ class AssignAccountKeyJob
 
     return if user.blank?
 
-    AccountKeyAsigner.perform(user)
+    AccountKeyAsignerService.perform(user)
   end
 end
